@@ -8,7 +8,7 @@ The current briefing demonstrates the new **temporal analysis** functionality de
 
 The interactive briefing is available here:
 
-https://k-mosalam.github.io/aphr-temporal-scapshot/
+https://k-mosalam.github.io/aphr-temporal-snapshot/
 
 ## Current Demonstration
 
