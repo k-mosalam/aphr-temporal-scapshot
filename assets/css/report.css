@@ -517,33 +517,376 @@
   }
 }
 
+@page {
+  size: Letter portrait;
+  margin: 0.58in 0.62in 0.64in;
+}
+
 @media print {
-  body {
-    background: #ffffff;
+  :root {
+    --print-ink: #1f2629;
+    --print-muted: #5f696f;
+    --print-line: #cfd8d3;
+    --print-soft: #f7f9f7;
+    --print-teal: #1f5e61;
+    --print-amber: #9a681f;
   }
 
-  .site-header,
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  html,
+  body {
+    width: auto;
+    min-width: 0;
+    background: #ffffff !important;
+    color: var(--print-ink);
+  }
+
+  body {
+    margin: 0;
+    font-size: 10.2pt;
+    line-height: 1.42;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .global-topbar,
   .site-nav-shell,
-  .site-footer {
-    display: none;
+  .drawer-shell,
+  .site-footer,
+  .drawer-trigger,
+  .site-header {
+    display: none !important;
   }
 
+  .site-shell,
   .site-main,
   .report-container {
+    width: 100%;
     max-width: none;
+    min-height: 0;
+    margin: 0;
     padding: 0;
   }
 
-  .product-header,
-  .report-header,
-  .aphr-report section {
+  .brand-strip {
+    gap: 0.24in;
+    justify-content: center;
+    margin: 0 0 0.18in;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .brand-logo {
+    min-height: 0;
+  }
+
+  .brand-logo img {
+    max-width: 1.85in;
+    max-height: 0.46in;
+  }
+
+  .brand-logo-peer img {
+    width: 0.45in;
+    height: 0.45in;
+    max-width: 0.45in;
+    max-height: 0.45in;
+  }
+
+  .report-header {
+    margin: 0 0 0.22in;
+    padding: 0 0 0.16in;
+    text-align: center;
     border: 0;
-    box-shadow: none;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .report-header::after {
+    width: 100%;
+    height: 0.75pt;
+    margin: 0.16in auto 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(188, 199, 195, 0.94) 7%,
+      rgba(188, 199, 195, 0.94) 93%,
+      transparent
+    );
+  }
+
+  .report-title {
+    gap: 0.04in;
+    margin: 0 auto 0.08in;
+  }
+
+  .title-location {
+    color: var(--print-ink);
+    font-size: 22pt;
+    font-weight: 850;
+    line-height: 1.08;
+  }
+
+  .title-product {
+    color: var(--print-teal);
+    font-size: 10.5pt;
+    font-weight: 850;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .header-times {
+    gap: 0.06in;
+    margin-top: 0.08in;
+    color: var(--print-muted);
+    font-size: 8.3pt;
+    line-height: 1.2;
+  }
+
+  .header-times span {
+    padding: 0.035in 0.07in;
+    background: #eef1eb;
+    border: 0.75pt solid var(--print-line);
+  }
+
+  .aphr-report {
+    margin-top: 0;
+    color: var(--print-ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+  }
+
+  .aphr-report > section {
+    margin: 0 0 0.22in;
+    padding: 0.18in 0 0;
+    background: transparent;
+    border: 0;
+    border-top: 0.75pt solid var(--print-line);
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .aphr-report > section:last-child {
+    margin-bottom: 0;
+  }
+
+  .aphr-report h2 {
+    margin: 0 0 0.1in;
+    color: var(--print-teal);
+    font-size: 16.5pt;
+    font-weight: 820;
+    line-height: 1.16;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .aphr-report h3,
+  .aphr-temporal-recon .region-info-body h3 {
+    margin: 0.14in 0 0.06in;
+    color: var(--print-teal);
+    font-size: 10.8pt;
+    font-weight: 780;
+    line-height: 1.25;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .aphr-report h4,
+  .aphr-temporal-recon .region-info-body h4 {
+    margin: 0.12in 0 0.05in;
+    color: var(--print-ink);
+    font-size: 9.6pt;
+    font-weight: 760;
+    line-height: 1.25;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .aphr-report p {
+    margin: 0 0 0.09in;
+    color: #30383b;
+    font-size: 9.8pt;
+    line-height: 1.46;
+    orphans: 3;
+    widows: 3;
+  }
+
+  .aphr-report p:last-child {
+    margin-bottom: 0;
+  }
+
+  .aphr-report .section-content {
+    color: #30383b;
+    white-space: pre-line;
+  }
+
+  .aphr-report .citation {
+    color: var(--print-teal);
+    font-size: 0.72em;
+    font-weight: 780;
+  }
+
+  .aphr-report figure,
+  .aphr-report .intensity-map,
+  .aphr-report .overview-figures figure,
+  .aphr-report .pager-figures figure {
+    margin: 0.14in 0 0.08in;
+    padding: 0.08in;
+    background: #fbfcfb;
+    border: 0.75pt solid var(--print-line);
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .aphr-report .intensity-map {
+    display: block;
+    max-width: 5.85in;
+    margin-right: auto;
+    margin-left: auto;
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .aphr-report img {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .aphr-report .intensity-map img,
+  .aphr-temporal-recon .introduction img {
+    width: 100%;
+    max-height: 4.65in;
+    object-fit: contain;
+  }
+
+  .aphr-report figcaption,
+  .aphr-report .image-caption {
+    margin: 0.055in 0 0;
+    color: var(--print-muted);
+    font-size: 8.4pt;
+    line-height: 1.25;
+    break-before: avoid;
+    page-break-before: avoid;
+  }
+
+  .aphr-report .pager-estimates,
+  .aphr-temporal-recon .pager-summary,
+  .aphr-temporal-recon .metric-summary,
+  .drawer-summary {
+    margin: 0.12in 0;
+    padding: 0.08in 0.1in;
+    background: #f7f5ee;
+    border: 0;
+    border-left: 3pt solid var(--print-amber);
+    color: #30383b;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .aphr-report .pager-images,
+  .aphr-temporal-recon .overview-figures,
+  .aphr-temporal-recon .pager-figures {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.1in;
+    margin: 0.12in 0 0.02in;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .aphr-report .pager-img,
+  .aphr-temporal-recon .pager-figures img,
+  .aphr-temporal-recon .overview-figures img {
+    width: 100%;
+    max-height: 2.55in;
+    background: #fbfcfb;
+    border: 0.75pt solid var(--print-line);
+    object-fit: contain;
+  }
+
+  .aphr-temporal-recon .introduction .overview-figures {
+    display: block;
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .aphr-temporal-recon .info-card,
+  .aphr-temporal-recon .detail-group,
+  .aphr-temporal-recon table,
+  .aphr-temporal-recon .timeline li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .aphr-temporal-recon .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.08in;
+  }
+
+  .aphr-temporal-recon .info-card {
+    padding: 0.1in;
+    background: #fbfcfb;
+    border: 0.75pt solid var(--print-line);
+  }
+
+  .aphr-temporal-recon .card-meta,
+  .aphr-temporal-recon time,
+  .aphr-temporal-recon .drawer-note {
+    color: var(--print-muted);
+    font-size: 8.3pt;
+  }
+
+  .aphr-temporal-recon .card-summary {
+    color: #30383b;
+    font-size: 9pt;
+  }
+
+  .aphr-temporal-recon table {
+    font-size: 8.5pt;
+  }
+
+  .aphr-temporal-recon th,
+  .aphr-temporal-recon td {
+    padding: 0.045in 0.055in;
+    border: 0.75pt solid var(--print-line);
+  }
+
+  .aphr-temporal-recon th {
+    background: #eef1eb;
   }
 
   .aphr-report .references {
+    margin-top: 0;
     break-before: page;
+    page-break-before: always;
+  }
+
+  .aphr-report .reference-list {
+    color: #30383b;
+    font-size: 8.4pt;
+    line-height: 1.32;
+  }
+
+  .aphr-report .reference-list li {
+    margin-bottom: 0.055in;
+    line-height: 1.32;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .aphr-report .ref-link {
+    color: #246ea6;
+    overflow-wrap: anywhere;
   }
 }
 
